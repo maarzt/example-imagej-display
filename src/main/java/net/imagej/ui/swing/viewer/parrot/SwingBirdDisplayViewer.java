@@ -45,20 +45,16 @@ public class SwingBirdDisplayViewer extends
 		AbstractDisplayViewer<Bird> implements BirdDisplayViewer
 {
 	@Override
-	public BirdDisplay getDisplay() {
-		return (BirdDisplay) super.getDisplay();
-	}
-
-	@Override
 	public boolean isCompatible(final UserInterface ui) {
 		return ui instanceof SwingUI;
 	}
 
 	@Override
 	public boolean canView(final Display<?> d) {
-		if(! (d instanceof BirdDisplay ))
+		Object object = d.get( 0 );
+		if(! (object instanceof Bird))
 			return false;
-		Bird bird = ((BirdDisplay ) d).get(0);
+		Bird bird = ( Bird ) object;
 		return SwingBirdDisplayPanel.supports( bird );
 	}
 

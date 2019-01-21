@@ -32,22 +32,24 @@
 package net.imagej.ui.swing.viewer.parrot;
 
 import com.mycompany.imagej.Bird;
+import org.scijava.display.Display;
+import org.scijava.ui.viewer.DisplayPanel;
 import org.scijava.ui.viewer.DisplayWindow;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SwingBirdDisplayPanel extends JPanel implements BirdDisplayPanel
+public class SwingBirdDisplayPanel extends JPanel implements DisplayPanel
 {
 
 	// -- instance variables --
 
 	private final DisplayWindow window;
-	private final BirdDisplay display;
+	private final Display<Bird> display;
 
 	// -- constructor --
 
-	public SwingBirdDisplayPanel( final BirdDisplay display,
+	public SwingBirdDisplayPanel( final Display<Bird> display,
 			final DisplayWindow window )
 	{
 		this.display = display;
@@ -65,7 +67,7 @@ public class SwingBirdDisplayPanel extends JPanel implements BirdDisplayPanel
 	// -- PlotDisplayPanel methods --
 
 	@Override
-	public BirdDisplay getDisplay() {
+	public Display<Bird> getDisplay() {
 		return display;
 	}
 

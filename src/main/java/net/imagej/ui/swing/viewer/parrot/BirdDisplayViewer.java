@@ -32,12 +32,13 @@
 package net.imagej.ui.swing.viewer.parrot;
 
 import com.mycompany.imagej.Bird;
+import org.scijava.display.Display;
 import org.scijava.ui.viewer.DisplayViewer;
 
 public interface BirdDisplayViewer extends DisplayViewer<Bird >
 {
 
 	@Override
-	BirdDisplay getDisplay();
+	Display<Bird> getDisplay();
 
 }

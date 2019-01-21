@@ -40,7 +40,7 @@ import org.scijava.plugin.Plugin;
 
 @Plugin(type = Display.class)
 public class DefaultBirdDisplay extends AbstractDisplay<Bird > implements
-		BirdDisplay
+		Display<Bird>
 {
 	@Parameter
 	ObjectService objectService;
