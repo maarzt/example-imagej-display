@@ -39,7 +39,7 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 @Plugin(type = Display.class)
-public class DefaultBirdDisplay extends AbstractDisplay<Bird > implements
+public class DefaultBirdDisplay extends AbstractDisplay<Bird> implements
 		Display<Bird>
 {
 	@Parameter
