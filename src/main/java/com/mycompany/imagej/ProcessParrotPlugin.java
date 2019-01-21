@@ -13,10 +13,10 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 @Plugin(type = Command.class, menuPath = "Example > Process FooBar")
-public class ProcessPlotPlugin implements Command {
+public class ProcessParrotPlugin implements Command {
 
     @Parameter
-    private Plot input;
+    private Parrot input;
 
     @Override
     public void run() {

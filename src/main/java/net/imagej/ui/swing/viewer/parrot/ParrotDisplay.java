@@ -29,15 +29,12 @@
  * #L%
  */
 
-package net.imagej.ui.swing.viewer.plot;
+package net.imagej.ui.swing.viewer.parrot;
 
-import com.mycompany.imagej.Plot;
-import org.scijava.ui.viewer.DisplayViewer;
+import com.mycompany.imagej.Parrot;
+import org.scijava.display.Display;
 
-public interface PlotDisplayViewer extends DisplayViewer<Plot >
+public interface ParrotDisplay extends Display<Parrot >
 {
-
-	@Override
-	PlotDisplay getDisplay();
-
+	// This interface intentionally left blank.
 }

@@ -29,26 +29,24 @@
  * #L%
  */
 
-package net.imagej.ui.swing.viewer.plot;
+package net.imagej.ui.swing.viewer.parrot;
 
-import com.mycompany.imagej.Plot;
+import com.mycompany.imagej.Parrot;
 import org.scijava.display.AbstractDisplay;
 import org.scijava.display.Display;
-import org.scijava.display.event.DisplayDeletedEvent;
-import org.scijava.event.EventHandler;
 import org.scijava.object.ObjectService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 @Plugin(type = Display.class)
-public class DefaultPlotDisplay extends AbstractDisplay<Plot > implements
-		PlotDisplay
+public class DefaultParrotDisplay extends AbstractDisplay<Parrot > implements
+		ParrotDisplay
 {
 	@Parameter
 	ObjectService objectService;
 
-	public DefaultPlotDisplay() {
-		super(Plot.class);
+	public DefaultParrotDisplay() {
+		super(Parrot.class);
 	}
 
 	@Override

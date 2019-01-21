@@ -1,10 +1,10 @@
 package com.mycompany.imagej;
 
-public class Plot
+public class Parrot
 {
 	private String text;
 
-	public Plot(String text)
+	public Parrot(String text)
 	{
 		this.text = text;
 	}

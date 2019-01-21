@@ -29,36 +29,14 @@
  * #L%
  */
 
-package net.imagej.ui.swing.viewer.plot;
+package net.imagej.ui.swing.viewer.parrot;
 
-import com.mycompany.imagej.Plot;
-import org.scijava.display.Display;
-import org.scijava.plugin.Plugin;
-import org.scijava.ui.UserInterface;
-import org.scijava.ui.swing.SwingUI;
-import org.scijava.ui.viewer.DisplayViewer;
-import org.scijava.ui.viewer.DisplayWindow;
+import org.scijava.ui.viewer.DisplayPanel;
 
-@Plugin(type = DisplayViewer.class)
-public class SwingPlotDisplayViewer extends AbstractPlotDisplayViewer {
+public interface ParrotDisplayPanel extends DisplayPanel
+{
 
 	@Override
-	public boolean isCompatible(final UserInterface ui) {
-		return ui instanceof SwingUI;
-	}
-
-	@Override
-	public boolean canView(final Display<?> d) {
-		if(! (d instanceof PlotDisplay ))
-			return false;
-		Plot plot = ((PlotDisplay) d).get(0);
-		return SwingPlotDisplayPanel.supports(plot);
-	}
-
-	@Override
-	public void view(final DisplayWindow w, final Display<?> d) {
-		super.view(w, d);
-		setPanel(new SwingPlotDisplayPanel(getDisplay(), w ));
-	}
+	ParrotDisplay getDisplay();
 
 }

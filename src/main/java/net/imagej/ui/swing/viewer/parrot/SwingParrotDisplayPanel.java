@@ -29,24 +29,67 @@
  * #L%
  */
 
-package net.imagej.ui.swing.viewer.plot;
+package net.imagej.ui.swing.viewer.parrot;
 
-import com.mycompany.imagej.Plot;
-import org.scijava.display.Display;
-import org.scijava.ui.viewer.AbstractDisplayViewer;
+import com.mycompany.imagej.Parrot;
+import org.scijava.ui.viewer.DisplayWindow;
 
-public abstract class AbstractPlotDisplayViewer extends
-		AbstractDisplayViewer<Plot > implements PlotDisplayViewer
+import javax.swing.*;
+import java.awt.*;
+
+public class SwingParrotDisplayPanel extends JPanel implements ParrotDisplayPanel
 {
 
+	// -- instance variables --
+
+	private final DisplayWindow window;
+	private final ParrotDisplay display;
+
+	// -- constructor --
+
+	public SwingParrotDisplayPanel( final ParrotDisplay display,
+			final DisplayWindow window )
+	{
+		this.display = display;
+		this.window = window;
+		setLayout(new BorderLayout());
+		window.setContent(this);
+		add(new JLabel(display.get(0).text()));
+	}
+
+
+	public static boolean supports( Parrot value ) {
+		return true; // We support any Plot
+	}
+
+	// -- PlotDisplayPanel methods --
+
 	@Override
-	public boolean canView(final Display<?> d) {
-		return d instanceof PlotDisplay;
+	public ParrotDisplay getDisplay() {
+		return display;
+	}
+
+	// -- DisplayPanel methods --
+
+	@Override
+	public DisplayWindow getWindow() {
+		return window;
 	}
 
 	@Override
-	public PlotDisplay getDisplay() {
-		return (PlotDisplay) super.getDisplay();
+	public void redoLayout()
+	{
+
 	}
 
+	@Override
+	public void setLabel(final String s) {
+
+	}
+
+	@Override
+	public void redraw()
+	{
+
+	}
 }

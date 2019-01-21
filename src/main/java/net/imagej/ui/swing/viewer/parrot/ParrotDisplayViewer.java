@@ -29,14 +29,15 @@
  * #L%
  */
 
-package net.imagej.ui.swing.viewer.plot;
+package net.imagej.ui.swing.viewer.parrot;
 
-import org.scijava.ui.viewer.DisplayPanel;
+import com.mycompany.imagej.Parrot;
+import org.scijava.ui.viewer.DisplayViewer;
 
-public interface PlotDisplayPanel extends DisplayPanel
+public interface ParrotDisplayViewer extends DisplayViewer<Parrot >
 {
 
 	@Override
-	PlotDisplay getDisplay();
+	ParrotDisplay getDisplay();
 
 }
