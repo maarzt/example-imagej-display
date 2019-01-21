@@ -14,15 +14,18 @@ import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
-@Plugin(type = Command.class, menuPath = "Example > Create FooBar")
+@Plugin(type = Command.class, menuPath = "Example > New Bird")
 public class NewBirdCommand implements Command {
+
+    @Parameter(choices = {"Parrot", "Owl", "Kiwi"})
+    private String kind;
 
     @Parameter(type = ItemIO.OUTPUT)
     private Bird output;
 
     @Override
     public void run() {
-    	output = new Bird("Hello World");
+        output = new Bird(kind);
     }
 
     /**

@@ -2,15 +2,16 @@ package com.mycompany.imagej;
 
 public class Bird
 {
-	private String text;
+	private String kind;
 
-	public Bird(String text)
+	public Bird(String kind)
 	{
-		this.text = text;
+		this.kind = kind;
 	}
 
-	public String text()
+	@Override
+	public String toString()
 	{
-		return text;
+		return "Bird (" + kind + ")";
 	}
 }

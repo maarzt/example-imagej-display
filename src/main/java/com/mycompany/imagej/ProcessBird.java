@@ -12,7 +12,7 @@ import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
-@Plugin(type = Command.class, menuPath = "Example > Process FooBar")
+@Plugin(type = Command.class, menuPath = "Example > Process Bird")
 public class ProcessBird implements Command {
 
     @Parameter
@@ -20,6 +20,6 @@ public class ProcessBird implements Command {
 
     @Override
     public void run() {
-    	System.out.println("Process Plot: " + input.text());
+        System.out.println("Process Bird: " + input);
     }
 }

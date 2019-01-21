@@ -56,7 +56,9 @@ public class SwingBirdDisplayPanel extends JPanel implements DisplayPanel
 		this.window = window;
 		setLayout(new BorderLayout());
 		window.setContent(this);
-		add(new JLabel(display.get(0).text()));
+		final JLabel label = new JLabel( display.get( 0 ).toString() );
+		label.setFont(new Font( Font.SERIF, Font.BOLD, 30 ));
+		add( label );
 	}
 
 
