@@ -8,13 +8,13 @@
  * %%
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice,
  *    this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -31,12 +31,35 @@
 
 package net.imagej.ui.swing.viewer.parrot;
 
-import org.scijava.ui.viewer.DisplayPanel;
+import com.mycompany.imagej.Bird;
+import org.scijava.display.AbstractDisplay;
+import org.scijava.display.Display;
+import org.scijava.object.ObjectService;
+import org.scijava.plugin.Parameter;
+import org.scijava.plugin.Plugin;
 
-public interface ParrotDisplayPanel extends DisplayPanel
+@Plugin(type = Display.class)
+public class DefaultBirdDisplay extends AbstractDisplay<Bird > implements
+		BirdDisplay
 {
+	@Parameter
+	ObjectService objectService;
+
+	public DefaultBirdDisplay() {
+		super(Bird.class);
+	}
 
 	@Override
-	ParrotDisplay getDisplay();
+	public void display( Object o )
+	{
+		super.display( o );
+		objectService.addObject( o );
+	}
 
+	@Override
+	public void close()
+	{
+		super.close();
+		forEach( objectService::removeObject );
+	}
 }

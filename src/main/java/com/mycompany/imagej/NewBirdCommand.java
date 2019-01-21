@@ -15,14 +15,14 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 @Plugin(type = Command.class, menuPath = "Example > Create FooBar")
-public class CreateParrotPlugin implements Command {
+public class NewBirdCommand implements Command {
 
     @Parameter(type = ItemIO.OUTPUT)
-    private Parrot output;
+    private Bird output;
 
     @Override
     public void run() {
-    	output = new Parrot("Hello World");
+    	output = new Bird("Hello World");
     }
 
     /**
@@ -37,7 +37,7 @@ public class CreateParrotPlugin implements Command {
         // create the ImageJ application context with all available services
         final ImageJ ij = new ImageJ();
         ij.ui().showUI();
-        ij.command().run( CreateParrotPlugin.class, true );
+        ij.command().run( NewBirdCommand.class, true );
     }
 
 }

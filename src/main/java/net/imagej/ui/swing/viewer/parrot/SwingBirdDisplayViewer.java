@@ -31,13 +31,35 @@
 
 package net.imagej.ui.swing.viewer.parrot;
 
-import com.mycompany.imagej.Parrot;
+import com.mycompany.imagej.Bird;
+import org.scijava.display.Display;
+import org.scijava.plugin.Plugin;
+import org.scijava.ui.UserInterface;
+import org.scijava.ui.swing.SwingUI;
 import org.scijava.ui.viewer.DisplayViewer;
+import org.scijava.ui.viewer.DisplayWindow;
 
-public interface ParrotDisplayViewer extends DisplayViewer<Parrot >
+@Plugin(type = DisplayViewer.class)
+public class SwingBirdDisplayViewer extends AbstractBirdDisplayViewer
 {
 
 	@Override
-	ParrotDisplay getDisplay();
+	public boolean isCompatible(final UserInterface ui) {
+		return ui instanceof SwingUI;
+	}
+
+	@Override
+	public boolean canView(final Display<?> d) {
+		if(! (d instanceof BirdDisplay ))
+			return false;
+		Bird bird = ((BirdDisplay ) d).get(0);
+		return SwingBirdDisplayPanel.supports( bird );
+	}
+
+	@Override
+	public void view(final DisplayWindow w, final Display<?> d) {
+		super.view(w, d);
+		setPanel(new SwingBirdDisplayPanel(getDisplay(), w ));
+	}
 
 }

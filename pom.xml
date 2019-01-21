@@ -72,7 +72,7 @@
 
 	<properties>
 		<package-name>com.mycompany.imagej</package-name>
-		<main-class>com.mycompany.imagej.CreateParrotPlugin</main-class>
+		<main-class>com.mycompany.imagej.NewBirdCommand</main-class>
 		<license.licenseName>bsd_2</license.licenseName>
 		<license.copyrightOwners>My Company, Inc.</license.copyrightOwners>
 	</properties>

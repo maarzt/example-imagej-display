@@ -31,22 +31,22 @@
 
 package net.imagej.ui.swing.viewer.parrot;
 
-import com.mycompany.imagej.Parrot;
+import com.mycompany.imagej.Bird;
 import org.scijava.display.Display;
 import org.scijava.ui.viewer.AbstractDisplayViewer;
 
-public abstract class AbstractParrotDisplayViewer extends
-		AbstractDisplayViewer<Parrot > implements ParrotDisplayViewer
+public abstract class AbstractBirdDisplayViewer extends
+		AbstractDisplayViewer<Bird > implements BirdDisplayViewer
 {
 
 	@Override
 	public boolean canView(final Display<?> d) {
-		return d instanceof ParrotDisplay;
+		return d instanceof BirdDisplay;
 	}
 
 	@Override
-	public ParrotDisplay getDisplay() {
-		return (ParrotDisplay ) super.getDisplay();
+	public BirdDisplay getDisplay() {
+		return (BirdDisplay ) super.getDisplay();
 	}
 
 }

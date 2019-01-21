@@ -31,10 +31,65 @@
 
 package net.imagej.ui.swing.viewer.parrot;
 
-import com.mycompany.imagej.Parrot;
-import org.scijava.display.Display;
+import com.mycompany.imagej.Bird;
+import org.scijava.ui.viewer.DisplayWindow;
 
-public interface ParrotDisplay extends Display<Parrot >
+import javax.swing.*;
+import java.awt.*;
+
+public class SwingBirdDisplayPanel extends JPanel implements BirdDisplayPanel
 {
-	// This interface intentionally left blank.
+
+	// -- instance variables --
+
+	private final DisplayWindow window;
+	private final BirdDisplay display;
+
+	// -- constructor --
+
+	public SwingBirdDisplayPanel( final BirdDisplay display,
+			final DisplayWindow window )
+	{
+		this.display = display;
+		this.window = window;
+		setLayout(new BorderLayout());
+		window.setContent(this);
+		add(new JLabel(display.get(0).text()));
+	}
+
+
+	public static boolean supports( Bird value ) {
+		return true; // We support any Plot
+	}
+
+	// -- PlotDisplayPanel methods --
+
+	@Override
+	public BirdDisplay getDisplay() {
+		return display;
+	}
+
+	// -- DisplayPanel methods --
+
+	@Override
+	public DisplayWindow getWindow() {
+		return window;
+	}
+
+	@Override
+	public void redoLayout()
+	{
+
+	}
+
+	@Override
+	public void setLabel(final String s) {
+
+	}
+
+	@Override
+	public void redraw()
+	{
+
+	}
 }
