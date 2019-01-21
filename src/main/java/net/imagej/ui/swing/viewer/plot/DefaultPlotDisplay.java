@@ -34,13 +34,34 @@ package net.imagej.ui.swing.viewer.plot;
 import com.mycompany.imagej.Plot;
 import org.scijava.display.AbstractDisplay;
 import org.scijava.display.Display;
+import org.scijava.display.event.DisplayDeletedEvent;
+import org.scijava.event.EventHandler;
+import org.scijava.object.ObjectService;
+import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 @Plugin(type = Display.class)
 public class DefaultPlotDisplay extends AbstractDisplay<Plot > implements
 		PlotDisplay
 {
+	@Parameter
+	ObjectService objectService;
+
 	public DefaultPlotDisplay() {
 		super(Plot.class);
+	}
+
+	@Override
+	public void display( Object o )
+	{
+		super.display( o );
+		objectService.addObject( o );
+	}
+
+	@Override
+	public void close()
+	{
+		super.close();
+		forEach( objectService::removeObject );
 	}
 }
