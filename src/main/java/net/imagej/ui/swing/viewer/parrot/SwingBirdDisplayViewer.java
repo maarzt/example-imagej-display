@@ -36,12 +36,18 @@ import org.scijava.display.Display;
 import org.scijava.plugin.Plugin;
 import org.scijava.ui.UserInterface;
 import org.scijava.ui.swing.SwingUI;
+import org.scijava.ui.viewer.AbstractDisplayViewer;
 import org.scijava.ui.viewer.DisplayViewer;
 import org.scijava.ui.viewer.DisplayWindow;
 
 @Plugin(type = DisplayViewer.class)
-public class SwingBirdDisplayViewer extends AbstractBirdDisplayViewer
+public class SwingBirdDisplayViewer extends
+		AbstractDisplayViewer<Bird> implements BirdDisplayViewer
 {
+	@Override
+	public BirdDisplay getDisplay() {
+		return (BirdDisplay) super.getDisplay();
+	}
 
 	@Override
 	public boolean isCompatible(final UserInterface ui) {
