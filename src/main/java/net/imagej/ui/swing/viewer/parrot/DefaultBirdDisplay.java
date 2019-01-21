@@ -37,8 +37,7 @@ import org.scijava.display.Display;
 import org.scijava.plugin.Plugin;
 
 @Plugin(type = Display.class)
-public class DefaultBirdDisplay extends AbstractDisplay<Bird> implements
-		Display<Bird>
+public class DefaultBirdDisplay extends AbstractDisplay<Bird>
 {
 	public DefaultBirdDisplay() {
 		super(Bird.class);
