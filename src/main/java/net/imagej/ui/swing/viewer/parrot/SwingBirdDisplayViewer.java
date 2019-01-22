@@ -36,6 +36,9 @@ import net.imagej.ui.swing.viewer.simple.SimpleSwingDisplayViewer;
 import org.scijava.plugin.Plugin;
 import org.scijava.ui.viewer.DisplayViewer;
 
+import javax.swing.*;
+import java.awt.*;
+
 @Plugin(type = DisplayViewer.class)
 public class SwingBirdDisplayViewer extends
 		SimpleSwingDisplayViewer<Bird>
@@ -56,5 +59,36 @@ public class SwingBirdDisplayViewer extends
 	protected SwingBirdDisplayPanel createDisplayPanel( Bird bird )
 	{
 		return new SwingBirdDisplayPanel( bird );
+	}
+
+	public static class SwingBirdDisplayPanel extends SimpleSwingDisplayViewer.Panel
+	{
+
+		// -- constructor --
+
+		public SwingBirdDisplayPanel( final Bird bird )
+		{
+			setLayout(new BorderLayout());
+			final JLabel label = new JLabel( bird.toString() );
+			label.setFont(new Font( Font.SERIF, Font.BOLD, 30 ));
+			add( label );
+		}
+
+		@Override
+		public void redoLayout()
+		{
+
+		}
+
+		@Override
+		public void setLabel(final String s) {
+
+		}
+
+		@Override
+		public void redraw()
+		{
+
+		}
 	}
 }
