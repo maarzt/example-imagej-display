@@ -56,39 +56,31 @@ public class SwingBirdDisplayViewer extends
 	}
 
 	@Override
-	protected SwingBirdDisplayPanel createDisplayPanel( Bird bird )
+	protected JPanel createDisplayPanel( Bird bird )
 	{
-		return new SwingBirdDisplayPanel( bird );
+		final JPanel panel = new JPanel();
+		panel.setLayout( new BorderLayout() );
+		final JLabel label = new JLabel( bird.toString() );
+		label.setFont( new Font( Font.SERIF, Font.BOLD, 30 ) );
+		panel.add( label );
+		return panel;
 	}
 
-	public static class SwingBirdDisplayPanel extends SimpleSwingDisplayViewer.Panel
+	@Override
+	public void redoLayout()
 	{
 
-		// -- constructor --
-
-		public SwingBirdDisplayPanel( final Bird bird )
-		{
-			setLayout(new BorderLayout());
-			final JLabel label = new JLabel( bird.toString() );
-			label.setFont(new Font( Font.SERIF, Font.BOLD, 30 ));
-			add( label );
-		}
-
-		@Override
-		public void redoLayout()
-		{
-
-		}
-
-		@Override
-		public void setLabel(final String s) {
-
-		}
-
-		@Override
-		public void redraw()
-		{
-
-		}
 	}
+
+	@Override
+	public void setLabel(final String s) {
+
+	}
+
+	@Override
+	public void redraw()
+	{
+
+	}
+
 }

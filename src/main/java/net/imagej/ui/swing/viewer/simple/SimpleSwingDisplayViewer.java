@@ -1,6 +1,5 @@
 package net.imagej.ui.swing.viewer.simple;
 
-import net.imagej.ui.swing.viewer.parrot.SwingBirdDisplayViewer;
 import org.scijava.display.Display;
 import org.scijava.display.event.DisplayDeletedEvent;
 import org.scijava.object.ObjectService;
@@ -13,6 +12,7 @@ import org.scijava.ui.viewer.DisplayViewer;
 import org.scijava.ui.viewer.DisplayWindow;
 
 import javax.swing.*;
+import java.awt.*;
 
 abstract public class SimpleSwingDisplayViewer<T> extends
 		AbstractDisplayViewer<T> implements DisplayViewer<T>
@@ -42,6 +42,10 @@ abstract public class SimpleSwingDisplayViewer<T> extends
 	}
 
 	protected abstract boolean canView( T value );
+	protected abstract void redoLayout();
+	protected abstract void setLabel(final String s);
+	protected abstract void redraw();
+	protected abstract JPanel createDisplayPanel(T value);
 
 	@Override
 	public void onDisplayDeletedEvent( DisplayDeletedEvent e )
@@ -54,33 +58,30 @@ abstract public class SimpleSwingDisplayViewer<T> extends
 	public void view(final DisplayWindow w, final Display<?> d) {
 		objectService.addObject( d.get( 0 ) );
 		super.view(w, d);
-		final SwingBirdDisplayViewer.SwingBirdDisplayPanel panel = createDisplayPanel( getDisplay().get(0) );
-		panel.setDisplay( d );
-		panel.setWindow( w );
-		setPanel( panel );
+		final JPanel content = createDisplayPanel( getDisplay().get(0) );
+		setPanel( new SwingDisplayPanel(w, d, this, content) );
 	}
 
-	protected abstract SwingBirdDisplayViewer.SwingBirdDisplayPanel createDisplayPanel(T value);
 
-	abstract public static class Panel extends JPanel implements DisplayPanel
+	public static class SwingDisplayPanel extends JPanel implements DisplayPanel
 	{
 
 		// -- instance variables --
 
-		private DisplayWindow window;
-		private Display< ? > display;
+		private final SimpleSwingDisplayViewer< ? > viewer;
+		private final DisplayWindow window;
+		private final Display< ? > display;
 
 		// -- PlotDisplayPanel methods --
 
-		public void setWindow( DisplayWindow window )
+		public SwingDisplayPanel( DisplayWindow window, Display< ? > display, SimpleSwingDisplayViewer< ? > viewer, JPanel panel )
 		{
 			this.window = window;
-			window.setContent(this);
-		}
-
-		public void setDisplay( Display< ? > display )
-		{
 			this.display = display;
+			this.viewer = viewer;
+			window.setContent(this);
+			setLayout( new BorderLayout() );
+			add(panel);
 		}
 
 		@Override
@@ -93,6 +94,24 @@ abstract public class SimpleSwingDisplayViewer<T> extends
 		@Override
 		public DisplayWindow getWindow() {
 			return window;
+		}
+
+		@Override
+		public void redoLayout()
+		{
+			viewer.redoLayout();
+		}
+
+		@Override
+		public void setLabel( String s )
+		{
+			viewer.setLabel( s );
+		}
+
+		@Override
+		public void redraw()
+		{
+			viewer.redraw();
 		}
 	}
 }
