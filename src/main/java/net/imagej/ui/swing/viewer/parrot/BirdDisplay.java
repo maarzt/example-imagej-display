@@ -42,4 +42,13 @@ public class BirdDisplay extends AbstractDisplay<Bird>
 	public BirdDisplay() {
 		super(Bird.class);
 	}
+
+
+	// --- Optionally it's possible to filter:
+
+	//	@Override
+	//	public boolean canDisplay( Object o )
+	//	{
+	//		return o instanceof Bird;
+	//	}
 }
