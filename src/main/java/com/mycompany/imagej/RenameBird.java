@@ -8,18 +8,22 @@
 
 package com.mycompany.imagej;
 
+import org.scijava.ItemIO;
 import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
-@Plugin(type = Command.class, menuPath = "Example > Process Bird")
-public class ProcessBird implements Command {
+@Plugin(type = Command.class, menuPath = "Example > Name Bird")
+public class RenameBird implements Command {
+
+    @Parameter(type = ItemIO.BOTH)
+    private Bird input;
 
     @Parameter
-    private Bird input;
+    String name;
 
     @Override
     public void run() {
-        System.out.println("Process Bird: " + input);
+        input.setName(name);
     }
 }

@@ -29,7 +29,7 @@
  * #L%
  */
 
-package net.imagej.ui.swing.viewer.parrot;
+package net.imagej.ui.swing.viewer.bird;
 
 import com.mycompany.imagej.Bird;
 import org.scijava.display.AbstractDisplay;

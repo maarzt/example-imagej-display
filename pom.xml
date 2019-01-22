@@ -49,6 +49,15 @@
 		</developer>
 	</developers>
 
+	<contributors >
+		<contributor>
+			<name>Nicolas Chiaruttini</name>
+			<url>http://biop.epfl.ch/INFO_Facility.html</url>
+			<roles><role>developer</role></roles>
+			<properties><id>NicoKiaru</id></properties>
+		</contributor>
+	</contributors >
+
 	<mailingLists>
 		<mailingList>
 			<name>Image.sc Forum</name>

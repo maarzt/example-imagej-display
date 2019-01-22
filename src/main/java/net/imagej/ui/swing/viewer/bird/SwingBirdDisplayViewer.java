@@ -29,15 +29,17 @@
  * #L%
  */
 
-package net.imagej.ui.swing.viewer.parrot;
+package net.imagej.ui.swing.viewer.bird;
 
 import com.mycompany.imagej.Bird;
 import net.imagej.ui.swing.viewer.EasySwingDisplayViewer;
 import org.scijava.plugin.Plugin;
 import org.scijava.ui.viewer.DisplayViewer;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.awt.Font;
 
 @Plugin(type = DisplayViewer.class)
 public class SwingBirdDisplayViewer extends
@@ -55,14 +57,26 @@ public class SwingBirdDisplayViewer extends
 		return true;
 	}
 
+	JLabel labelName;
+
+	/**
+	 * Maintains a reference to the object being displayed
+	 */
+
+	Bird bird = null;
+
 	@Override
 	protected JPanel createDisplayPanel( Bird bird )
 	{
+		this.bird = bird;
 		final JPanel panel = new JPanel();
-		panel.setLayout( new BorderLayout() );
-		final JLabel label = new JLabel( bird.toString() );
-		label.setFont( new Font( Font.SERIF, Font.BOLD, 30 ) );
-		panel.add( label );
+		panel.setLayout( new GridLayout(2,1));
+		final JLabel labelKind = new JLabel( bird.toString() );
+		labelKind.setFont( new Font( Font.SERIF, Font.BOLD, 20 ) );
+		panel.add( labelKind );
+		labelName = new JLabel( bird.getName() );
+		labelName.setFont( new Font( Font.SERIF, Font.BOLD, 30 ) );
+		panel.add( labelName );
 		return panel;
 	}
 
@@ -77,10 +91,14 @@ public class SwingBirdDisplayViewer extends
 
 	}
 
+	/**
+	 * Called each time the Bird is declared as an ItemIO.OUTPUT or ItemIO.BOTH parameter
+	 */
+
 	@Override
 	public void redraw()
 	{
-
+		labelName.setText(bird.getName());
 	}
 
 }
