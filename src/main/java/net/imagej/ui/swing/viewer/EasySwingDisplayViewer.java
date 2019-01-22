@@ -1,4 +1,4 @@
-package net.imagej.ui.swing.viewer.simple;
+package net.imagej.ui.swing.viewer;
 
 import org.scijava.display.Display;
 import org.scijava.display.event.DisplayDeletedEvent;
@@ -14,17 +14,17 @@ import org.scijava.ui.viewer.DisplayWindow;
 import javax.swing.*;
 import java.awt.*;
 
-abstract public class SimpleSwingDisplayViewer<T> extends
+abstract public class EasySwingDisplayViewer<T> extends
 		AbstractDisplayViewer<T> implements DisplayViewer<T>
 {
-	private final Class<?> type;
+	private final Class<T> classOfObject;
 
 	@Parameter
 	ObjectService objectService;
 
-	protected SimpleSwingDisplayViewer( Class< ? > type )
+	protected EasySwingDisplayViewer( Class< T > classOfObject )
 	{
-		this.type = type;
+		this.classOfObject = classOfObject;
 	}
 
 	@Override
@@ -35,7 +35,7 @@ abstract public class SimpleSwingDisplayViewer<T> extends
 	@Override
 	public boolean canView(final Display<?> d) {
 		Object object = d.get( 0 );
-		if(! type.isInstance( object ) )
+		if(! classOfObject.isInstance( object ) )
 			return false;
 		T value = ( T ) object;
 		return canView( value );
@@ -68,13 +68,13 @@ abstract public class SimpleSwingDisplayViewer<T> extends
 
 		// -- instance variables --
 
-		private final SimpleSwingDisplayViewer< ? > viewer;
+		private final EasySwingDisplayViewer< ? > viewer;
 		private final DisplayWindow window;
 		private final Display< ? > display;
 
 		// -- PlotDisplayPanel methods --
 
-		public SwingDisplayPanel( DisplayWindow window, Display< ? > display, SimpleSwingDisplayViewer< ? > viewer, JPanel panel )
+		public SwingDisplayPanel( DisplayWindow window, Display< ? > display, EasySwingDisplayViewer< ? > viewer, JPanel panel )
 		{
 			this.window = window;
 			this.display = display;

@@ -32,7 +32,7 @@
 package net.imagej.ui.swing.viewer.parrot;
 
 import com.mycompany.imagej.Bird;
-import net.imagej.ui.swing.viewer.simple.SimpleSwingDisplayViewer;
+import net.imagej.ui.swing.viewer.EasySwingDisplayViewer;
 import org.scijava.plugin.Plugin;
 import org.scijava.ui.viewer.DisplayViewer;
 
@@ -41,7 +41,7 @@ import java.awt.*;
 
 @Plugin(type = DisplayViewer.class)
 public class SwingBirdDisplayViewer extends
-		SimpleSwingDisplayViewer<Bird>
+		EasySwingDisplayViewer<Bird>
 {
 
 	public SwingBirdDisplayViewer()
