@@ -44,6 +44,7 @@ abstract public class SimpleSwingDisplayViewer<T> extends
 	@Override
 	public void onDisplayDeletedEvent( DisplayDeletedEvent e )
 	{
+		super.onDisplayDeletedEvent( e );
 		objectService.removeObject( getDisplay().get( 0 ) );
 	}
 
