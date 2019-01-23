@@ -33,6 +33,8 @@ package net.imagej.ui.swing.viewer.bird;
 
 import com.mycompany.imagej.Bird;
 import net.imagej.ui.swing.viewer.EasySwingDisplayViewer;
+import org.scijava.Context;
+import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 import org.scijava.ui.viewer.DisplayViewer;
 
@@ -45,6 +47,9 @@ import java.awt.Font;
 public class SwingBirdDisplayViewer extends
 		EasySwingDisplayViewer<Bird>
 {
+
+	@Parameter
+	Context ctx;
 
 	public SwingBirdDisplayViewer()
 	{
@@ -68,6 +73,7 @@ public class SwingBirdDisplayViewer extends
 	@Override
 	protected JPanel createDisplayPanel( Bird bird )
 	{
+		System.out.println("JPanel required for object "+bird+" in context "+ctx+".");
 		this.bird = bird;
 		final JPanel panel = new JPanel();
 		panel.setLayout( new GridLayout(2,1));
