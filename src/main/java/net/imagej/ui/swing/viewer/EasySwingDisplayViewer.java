@@ -14,6 +14,20 @@ import org.scijava.ui.viewer.DisplayWindow;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
+/**
+ * Class helping to build a simple Swing JPanel for any object of class T declared as a Scijava Parameter
+ * in a Scijava Command
+ *
+ * Usage example see:
+ * https://github.com/maarzt/example-imagej-display
+ *
+ * Image.sc forum thread :
+ * https://forum.image.sc/t/displaying-and-using-and-any-object-in-a-scijava-fiji-command
+ *
+ * @param <T> class of object needed to be displayed in a Swing UI
+ * @author Matthias Arzt
+ */
+
 abstract public class EasySwingDisplayViewer<T> extends
 		AbstractDisplayViewer<T> implements DisplayViewer<T>
 {

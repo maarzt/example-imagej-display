@@ -11,6 +11,7 @@ package com.mycompany.imagej;
 import net.imagej.ImageJ;
 import org.scijava.ItemIO;
 import org.scijava.command.Command;
+import org.scijava.object.ObjectService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
@@ -22,6 +23,9 @@ public class NewBirdCommand implements Command {
 
     @Parameter(type = ItemIO.OUTPUT)
     private Bird output;
+
+    @Parameter
+    ObjectService os;
 
     @Override
     public void run() {
