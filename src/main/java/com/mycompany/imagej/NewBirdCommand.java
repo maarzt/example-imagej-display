@@ -14,6 +14,10 @@ import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
+/**
+ * Command that allows to create a {@link Bird}.
+ * This command is shown in the menu under "Example > New Bird".
+ */
 @Plugin(type = Command.class, menuPath = "Example > New Bird")
 public class NewBirdCommand implements Command {
 

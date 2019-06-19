@@ -13,13 +13,17 @@ import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
+/**
+ * Command that renames a {@link Bird}.
+ * This command is shown in the menu under "Example > Name Bird".
+ */
 @Plugin(type = Command.class, menuPath = "Example > Name Bird")
-public class RenameBird implements Command {
+public class RenameBirdCommand implements Command {
 
-    @Parameter(type = ItemIO.BOTH)
+    @Parameter(type = ItemIO.BOTH, label = "Bird")
     private Bird input;
 
-    @Parameter
+    @Parameter(label = "New name")
     String name;
 
     @Override

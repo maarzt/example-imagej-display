@@ -36,6 +36,13 @@ import org.scijava.display.AbstractDisplay;
 import org.scijava.display.Display;
 import org.scijava.plugin.Plugin;
 
+/**
+ * Very simple UI independent class, that's required to display the {@link Bird}.
+ * <p>
+ * This class can potentially hold information about how to display the bird,
+ * that can be anything like: font size, color, display mode. This simple example
+ * doesn't use any of these possibilities.
+ */
 @Plugin(type = Display.class)
 public class BirdDisplay extends AbstractDisplay<Bird>
 {
