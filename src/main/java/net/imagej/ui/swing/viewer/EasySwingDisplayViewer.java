@@ -11,59 +11,58 @@ import org.scijava.ui.viewer.DisplayPanel;
 import org.scijava.ui.viewer.DisplayViewer;
 import org.scijava.ui.viewer.DisplayWindow;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
 
-abstract public class EasySwingDisplayViewer<T> extends
-		AbstractDisplayViewer<T> implements DisplayViewer<T>
+abstract public class EasySwingDisplayViewer< T >
+		extends AbstractDisplayViewer< T > implements DisplayViewer< T >
 {
-	private final Class<T> classOfObject;
 
-	@Parameter
-	ObjectService objectService;
+	private final Class< T > classOfObject;
 
-	protected EasySwingDisplayViewer( Class< T > classOfObject )
+	@Parameter ObjectService objectService;
+
+	protected EasySwingDisplayViewer(Class< T > classOfObject)
 	{
 		this.classOfObject = classOfObject;
 	}
 
-	@Override
-	public boolean isCompatible(final UserInterface ui) {
+	@Override public boolean isCompatible(final UserInterface ui) {
 		return ui instanceof SwingUI;
 	}
 
-	@Override
-	public boolean canView(final Display<?> d) {
-		Object object = d.get( 0 );
-		if(! classOfObject.isInstance( object ) )
-			return false;
-		T value = ( T ) object;
-		return canView( value );
+	@Override public boolean canView(final Display< ? > d) {
+		Object object = d.get(0);
+		if (!classOfObject.isInstance(object)) return false;
+		T value = (T) object;
+		return canView(value);
 	}
 
-	protected abstract boolean canView( T value );
+	protected abstract boolean canView(T value);
+
 	protected abstract void redoLayout();
+
 	protected abstract void setLabel(final String s);
+
 	protected abstract void redraw();
+
 	protected abstract JPanel createDisplayPanel(T value);
 
-	@Override
-	public void onDisplayDeletedEvent( DisplayDeletedEvent e )
+	@Override public void onDisplayDeletedEvent(DisplayDeletedEvent e)
 	{
-		super.onDisplayDeletedEvent( e );
-		objectService.removeObject( getDisplay().get( 0 ) );
+		super.onDisplayDeletedEvent(e);
+		objectService.removeObject(getDisplay().get(0));
 	}
 
-	@Override
-	public void view(final DisplayWindow w, final Display<?> d) {
-		objectService.addObject( d.get( 0 ) );
+	@Override public void view(final DisplayWindow w, final Display< ? > d) {
+		objectService.addObject(d.get(0));
 		super.view(w, d);
-		final JPanel content = createDisplayPanel( getDisplay().get(0) );
-		setPanel( new SwingDisplayPanel(w, d, this, content) );
+		final JPanel content = createDisplayPanel(getDisplay().get(0));
+		setPanel(new SwingDisplayPanel(w, d, this, content));
 	}
 
-
-	public static class SwingDisplayPanel extends JPanel implements DisplayPanel
+	public static class SwingDisplayPanel extends JPanel
+			implements DisplayPanel
 	{
 
 		// -- instance variables --
@@ -74,42 +73,38 @@ abstract public class EasySwingDisplayViewer<T> extends
 
 		// -- PlotDisplayPanel methods --
 
-		public SwingDisplayPanel( DisplayWindow window, Display< ? > display, EasySwingDisplayViewer< ? > viewer, JPanel panel )
+		public SwingDisplayPanel(DisplayWindow window, Display< ? > display,
+				EasySwingDisplayViewer< ? > viewer, JPanel panel)
 		{
 			this.window = window;
 			this.display = display;
 			this.viewer = viewer;
 			window.setContent(this);
-			setLayout( new BorderLayout() );
+			setLayout(new BorderLayout());
 			add(panel);
 		}
 
-		@Override
-		public Display< ? > getDisplay() {
+		@Override public Display< ? > getDisplay() {
 			return display;
 		}
 
 		// -- DisplayPanel methods --
 
-		@Override
-		public DisplayWindow getWindow() {
+		@Override public DisplayWindow getWindow() {
 			return window;
 		}
 
-		@Override
-		public void redoLayout()
+		@Override public void redoLayout()
 		{
 			viewer.redoLayout();
 		}
 
-		@Override
-		public void setLabel( String s )
+		@Override public void setLabel(String s)
 		{
-			viewer.setLabel( s );
+			viewer.setLabel(s);
 		}
 
-		@Override
-		public void redraw()
+		@Override public void redraw()
 		{
 			viewer.redraw();
 		}

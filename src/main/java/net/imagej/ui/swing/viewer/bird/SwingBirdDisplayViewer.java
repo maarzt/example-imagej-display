@@ -39,51 +39,52 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 import org.scijava.ui.viewer.DisplayViewer;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * This class is responsible for displaying the {@link Bird}.
  */
-@Plugin(type = DisplayViewer.class)
-public class SwingBirdDisplayViewer extends
-		EasySwingDisplayViewer<Bird>
+@Plugin(type = DisplayViewer.class) public class SwingBirdDisplayViewer
+		extends EasySwingDisplayViewer< Bird >
 {
 
-	@Parameter
-	Context context;
+	@Parameter Context context;
 
-	/** Keeps a reference to the {@link Bird} that is displayed. */
+	/**
+	 * Keeps a reference to the {@link Bird} that is displayed.
+	 */
 	private Bird bird = null;
 
-	/** Label that is used to show the name of the {@link Bird}. */
+	/**
+	 * Label that is used to show the name of the {@link Bird}.
+	 */
 	JLabel labelName;
 
 	public SwingBirdDisplayViewer()
 	{
-		super( Bird.class );
+		super(Bird.class);
 	}
 
-	@Override
-	protected boolean canView( Bird bird )
+	@Override protected boolean canView(Bird bird)
 	{
 		return true;
 	}
 
-	@Override
-	protected JPanel createDisplayPanel( Bird bird )
+	@Override protected JPanel createDisplayPanel(Bird bird)
 	{
-		System.out.println("JPanel required for object "+bird+" in context "+ context +".");
+		System.out.println(
+				"JPanel required for object " + bird + " in context " +
+						context + ".");
 		this.bird = bird;
 		final JPanel panel = new JPanel();
-		panel.setLayout( new MigLayout() );
-		final JLabel labelKind = new JLabel( "Bird: " + bird.getKind() );
-		labelKind.setFont( new Font( Font.SERIF, Font.BOLD, 20 ) );
-		panel.add( labelKind, "wrap" );
-		labelName = new JLabel( bird.getName() );
-		labelName.setFont( new Font( Font.SERIF, Font.BOLD, 30 ) );
-		panel.add( labelName );
+		panel.setLayout(new MigLayout());
+		final JLabel labelKind = new JLabel("Bird: " + bird.getKind());
+		labelKind.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+		panel.add(labelKind, "wrap");
+		labelName = new JLabel(bird.getName());
+		labelName.setFont(new Font(Font.SERIF, Font.BOLD, 30));
+		panel.add(labelName);
 		return panel;
 	}
 
@@ -91,21 +92,18 @@ public class SwingBirdDisplayViewer extends
 	 * Called each time the {@link Bird} is output of a command.
 	 * ({@code @Parameter(type = ItemIO.OUTPUT)} or {@code @Parameter(type = ItemIO.BOTH)})
 	 */
-	@Override
-	public void redraw()
+	@Override public void redraw()
 	{
 		labelName.setText(bird.getName());
 		getWindow().pack();
 	}
 
-	@Override
-	public void redoLayout()
+	@Override public void redoLayout()
 	{
 		// ignored
 	}
 
-	@Override
-	public void setLabel(final String s)
+	@Override public void setLabel(final String s)
 	{
 		// ignored
 	}

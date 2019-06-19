@@ -20,14 +20,11 @@ import org.scijava.plugin.Plugin;
 @Plugin(type = Command.class, menuPath = "Example > Name Bird")
 public class RenameBirdCommand implements Command {
 
-    @Parameter(type = ItemIO.BOTH, label = "Bird")
-    private Bird input;
+	@Parameter(type = ItemIO.BOTH, label = "Bird") private Bird input;
 
-    @Parameter(label = "New name")
-    String name;
+	@Parameter(label = "New name") String name;
 
-    @Override
-    public void run() {
-        input.setName(name);
-    }
+	@Override public void run() {
+		input.setName(name);
+	}
 }

@@ -21,30 +21,27 @@ import org.scijava.plugin.Plugin;
 @Plugin(type = Command.class, menuPath = "Example > New Bird")
 public class NewBirdCommand implements Command {
 
-    @Parameter(choices = {"Parrot", "Owl", "Kiwi"})
-    private String kind;
+	@Parameter(choices = { "Parrot", "Owl", "Kiwi" }) private String kind;
 
-    @Parameter(type = ItemIO.OUTPUT)
-    private Bird output;
+	@Parameter(type = ItemIO.OUTPUT) private Bird output;
 
-    @Override
-    public void run() {
-        output = new Bird(kind);
-    }
+	@Override public void run() {
+		output = new Bird(kind);
+	}
 
-    /**
-     * This main function serves for development purposes.
-     * It allows you to run the plugin immediately out of
-     * your integrated development environment (IDE).
-     *
-     * @param args whatever, it's ignored
-     * @throws Exception
-     */
-    public static void main(final String... args) throws Exception {
-        // create the ImageJ application context with all available services
-        final ImageJ ij = new ImageJ();
-        ij.ui().showUI();
-        ij.command().run( NewBirdCommand.class, true );
-    }
+	/**
+	 * This main function serves for development purposes.
+	 * It allows you to run the plugin immediately out of
+	 * your integrated development environment (IDE).
+	 *
+	 * @param args whatever, it's ignored
+	 * @throws Exception
+	 */
+	public static void main(final String... args) throws Exception {
+		// create the ImageJ application context with all available services
+		final ImageJ ij = new ImageJ();
+		ij.ui().showUI();
+		ij.command().run(NewBirdCommand.class, true);
+	}
 
 }
